@@ -1,6 +1,5 @@
-import { Express } from "express";
+import { Application, Express } from 'express'
 
-
-export default function (app: Express) {
-  app.get('/check-health', (req, res) => res.send('its working'))
+export default function (app: Application) {
+    app.get('/check-health', (req, res) => res.send('its working'))
 }
