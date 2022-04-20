@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import config from '../config'
 
-const db = () => {
+const dbMongo = () => {
     return mongoose
         .connect(config.dbUri as string)
         .then(() => {
@@ -13,4 +13,4 @@ const db = () => {
         })
 }
 
-export default db
+export default dbMongo

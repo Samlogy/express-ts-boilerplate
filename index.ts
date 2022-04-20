@@ -1,21 +1,15 @@
-import express, { Application, Request, Response, NextFunction } from 'express'
-require('dotenv').config({ path: './config.dev.env' })
-
+import express, { Application, NextFunction, Request, Response } from 'express'
 import config from './config'
-import security from './security'
-import db from './utils/connectMongo'
+import { globalErrorHandler } from './controllers/errorController'
 import route from './routes/route'
-import cache from './utils/cache'
+import { AppError } from './utils/appError'
 import corsOptions from './utils/corsOptions'
-
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import dbPrisma from './utils/connectPrisma'
+import dbMongo from './utils/connectMongo'
+require('dotenv').config({ path: './config.dev.env' })
 
 const port = config.port as number
 const host = config.host as string
-
-import { AppError } from './utils/appError'
-import { globalErrorHandler } from './controllers/errorController'
 
 const app: Application = express()
 
@@ -27,7 +21,7 @@ app.use(express.urlencoded({ extended: false }))
 corsOptions(app)
 
 // secure app
-security(app)
+// security(app)
 
 // environment (dev - prod)
 if (process.env.NODE_ENV === 'prod') {
@@ -51,12 +45,13 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
 app.use(globalErrorHandler)
 
 app.listen(port, host, () => {
-    console.log(`Server listing at http://${host}:${port}`)
+    console.log(`server`)
 
     // connect to MongoDB
-    // db()
+    // dbMongo()
 
     // connect to Prisma Postgresql
+    dbPrisma
 
     // cache DB
     // cache

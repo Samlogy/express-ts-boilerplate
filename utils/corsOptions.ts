@@ -1,5 +1,5 @@
 import { Application, Request } from 'express'
-const cors = require('cors')
+import cors from 'cors'
 
 const allowList = ['http://localhost:3000']
 
