@@ -1,18 +1,16 @@
-import mongoose from "mongoose";
-
-import config from "../config";
-import log from "../utils/logger";
+import mongoose from 'mongoose'
+import config from '../config'
 
 const db = () => {
-  return mongoose
-    .connect(config.dbUri as string)
-    .then(() => {
-      log.info("MongoDB connected");
-    })
-    .catch((err: any) => {
-      log.error("DB error", err.message);
-      process.exit(1);
-    });
-};
+    return mongoose
+        .connect(config.dbUri as string)
+        .then(() => {
+            console.log('MongoDB connected')
+        })
+        .catch((err: any) => {
+            console.log('DB error', err.message)
+            process.exit(1)
+        })
+}
 
-export default db;
+export default db

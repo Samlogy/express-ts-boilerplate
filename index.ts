@@ -1,13 +1,15 @@
 import express, { Application, Request, Response, NextFunction } from 'express'
-const cors = require('cors')
 require('dotenv').config({ path: './config.dev.env' })
 
 import config from './config'
-import log from './utils/logger'
 import security from './security'
 import db from './utils/connectMongo'
 import route from './routes/route'
 import cache from './utils/cache'
+import corsOptions from './utils/corsOptions'
+
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 const port = config.port as number
 const host = config.host as string
@@ -21,21 +23,8 @@ const app: Application = express()
 app.use(express.json({ limit: '10kb' }))
 app.use(express.urlencoded({ extended: false }))
 
-const allowList = ['http://localhost:3000']
-
-const corsManip = (req: Request, callback: any) => {
-    let corsOptions
-    const origin = req.header('Origin') as string
-
-    if (allowList.indexOf(origin) !== -1) {
-        corsOptions = { origin: true } // enable requested origin in cors response
-    } else {
-        corsOptions = { origin: false } // disable cors in reponse
-    }
-    callback(null, corsOptions)
-}
-
-app.use(cors(corsManip))
+// cors options
+corsOptions(app)
 
 // secure app
 security(app)
@@ -62,13 +51,15 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
 app.use(globalErrorHandler)
 
 app.listen(port, host, () => {
-    log.info(`Server listing at http://${host}:${port}`)
+    console.log(`Server listing at http://${host}:${port}`)
 
     // connect to MongoDB
-    db()
+    // db()
+
+    // connect to Prisma Postgresql
 
     // cache DB
-    cache
+    // cache
 
     // Routes
     route(app)

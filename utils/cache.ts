@@ -1,24 +1,22 @@
-import { createClient } from "redis";
+import { createClient } from 'redis'
+import config from '../config'
 
-import config from "../config";
-import log from "../utils/logger";
-
-const host = config.redis_host as string;
-const port = config.redis_port as number;
-const username = config.redis_username as string;
-const password = config.redis_password as string;
+const host = config.redis_host as string
+const port = config.redis_port as number
+const username = config.redis_username as string
+const password = config.redis_password as string
 
 const cache = (async () => {
-  try {
-    const client = createClient({
-      url: `redis://${username}:${password}@${host}:${port}`,
-    });
+    try {
+        const client = createClient({
+            url: `redis://${username}:${password}@${host}:${port}`,
+        })
 
-    client.on("error", (err: any) => log.info("Redis Client Error", err));
-    await client.connect();
-  } catch (err: any) {
-    console.log("err: ", err.message);
-  }
-})();
+        client.on('error', (err: any) => console.log('Redis Client Error', err))
+        await client.connect()
+    } catch (err: any) {
+        console.log('err: ', err.message)
+    }
+})()
 
-export default cache;
+export default cache
