@@ -57,5 +57,5 @@ app.listen(port, host, () => {
     // cache
 
     // Routes
-    route(app)
+    // route('/api', app)
 })
