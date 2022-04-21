@@ -1,0 +1,15 @@
+/** Prisma **/
+
+npx prisma init -->  prisma project
+npx prisma db push --> introspection tables (schemas)
+npx prisma generate -> generate client
+npx prisma studio --> run ui visualize prima models
+prisma db pull --> pull schema from existing db
+prisma db push --> push schema state to db
+prisma migrate dev --> create migrations from your Prisma schema, apply them to the database
+
+all relations can be expressed --> 1/1 - 1/* - */* self
+filtering / sorting
+composition (heritage)
+pagination
+operations (get - create - update - delete - upsert[update / create])

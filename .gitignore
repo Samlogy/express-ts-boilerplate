@@ -2,3 +2,4 @@
 .config.dev.env
 .config.prod.env
 .env
+/prisma/migrations
