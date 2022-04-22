@@ -1,14 +1,14 @@
 export default {
     port: 4000,
-    host: "localhost",
-    dbUri: "mongodb://localhost:27017/express-ts",
+    host: 'localhost',
+    dbUri: 'mongodb://localhost:27017/express-ts',
     saltWorkFactor: 10,
-    accessTokenTtl: "15m",
-    refreshTokenTtl: "1y",
+    accessTokenTtl: '15m',
+    refreshTokenTtl: '1y',
     redis_port: 6379,
-    redis_host: "127.0.0.1",
-    redis_username: "",
-    redis_password: "",
+    redis_host: '127.0.0.1',
+    redis_username: '',
+    redis_password: '',
     privateKey: `-----BEGIN RSA PRIVATE KEY-----
     MIICWwIBAAKBgQCQNBc4IP2ewViqE+ZHbnqGoCZFyAUtrxKmO4k/boSvBisJH6BX
     01ajpafM7c7f5PO+wAcGYIxiTQsv9ml2/cgnB6MWG/YYKDCfbWLNbpvQxYlUCu0f
@@ -24,4 +24,4 @@ export default {
     +0fk592vlHggCWYQ6QJANZzno1FwUOjtGLeKm83ZGdbo3K+00i25FmBgB2d0uAtk
     noxFVOjsY+eSXHZqNybrhWRAzutSnpz/QEf/7Vg97g==
     -----END CERTIFICATE-----`,
-};
+}

@@ -1,4 +1,5 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
+
 import config from './config'
 import { globalErrorHandler } from './controllers/errorController'
 import route from './routes/route'
@@ -6,6 +7,7 @@ import { AppError } from './utils/appError'
 import corsOptions from './utils/corsOptions'
 import dbPrisma from './utils/connectPrisma'
 import dbMongo from './utils/connectMongo'
+import cache from './utils/cache'
 require('dotenv').config({ path: './config.dev.env' })
 
 const port = config.port as number
@@ -51,10 +53,10 @@ app.listen(port, host, () => {
     // dbMongo()
 
     // connect to Prisma Postgresql
-    dbPrisma
+    // dbPrisma
 
     // cache DB
-    // cache
+    cache
 
     // Routes
     // route('/api', app)
